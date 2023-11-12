@@ -69,7 +69,7 @@ function getHandData(handId: string, gameId: string){
     
     let i = 1 // number of cards to be drawn
     if (handId == "hole"){
-        i = 4
+        i = 2
     }
     if (handId =="flop"){
         i = 3
@@ -89,14 +89,9 @@ function getHandData(handId: string, gameId: string){
         cardsToReturn,
         privateKey
     );
-
-  let data: any = cardsToReturn
-  if (handId == "hole"){
-    data = [cardsToReturn.slice(0,2), cardsToReturn.slice(2)]
-  }
     
   return {
-    "hand": data, 
+    "hand": cardsToReturn, 
     "signature":  signature.signature, 
     "publicKey":  signature.publicKey
   }
