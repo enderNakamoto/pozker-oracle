@@ -76,7 +76,7 @@ function getHandData(handId: string, gameId: string){
     }
 
     const cardsToReturn = shuffledDeck.slice(0, i)
-    const remainingDeck = shuffledDeck.slice(i, shuffledDeck.length)
+    const remainingDeck = shuffledDeck.slice(i)
 
     console.log("cards given", cardsToReturn);
     console.log("remainingDeck", remainingDeck);
@@ -89,9 +89,14 @@ function getHandData(handId: string, gameId: string){
         cardsToReturn,
         privateKey
     );
+
+  let data: any = cardsToReturn
+  if (handId == "hole"){
+    data = [cardsToReturn.slice(0,2), cardsToReturn.slice(2)]
+  }
     
   return {
-    "hand": cardsToReturn, 
+    "hand": data, 
     "signature":  signature.signature, 
     "publicKey":  signature.publicKey
   }
